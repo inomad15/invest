@@ -1,4 +1,4 @@
 {
-  "date": "준비 중",
-  "content": "<h3>☀️ 모닝 브리핑 시스템 설정 중...</h3><p>자동화 시스템이 구축되고 있습니다. 내일 아침부터 AI가 요약한 글로벌 시장 브리핑이 이곳에 업데이트됩니다.</p>"
+  "date": "2026-02-06 15:13",
+  "content": "<h3>⚠️ 브리핑 생성 실패</h3><p>AI 요약 중 오류가 발생했습니다: 404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.</p>"
 }
