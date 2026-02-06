@@ -1,3 +1,7 @@
+
+// Finnhub API 키를 입력하세요.
+const API_KEY = "d62v1n9r01qnpqnv70n0d62v1n9r01qnpqnv70ng"; // 여기에 실제 API 키를 입력하세요.
+
 // 숫자 포맷팅 함수 (콤마 추가)
 const formatNumber = (num) => {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -18,6 +22,8 @@ const formatChange = (value) => {
 
 // 1. 공포/탐욕 지수 가져오기
 async function fetchFnG() {
+    const valueEl = document.getElementById('fng-value');
+    const textEl = document.getElementById('fng-text');
     try {
         const response = await fetch('https://api.alternative.me/fng/?limit=1');
         if (!response.ok) {
@@ -29,18 +35,22 @@ async function fetchFnG() {
         const value = fngData.value;
         const status = fngData.value_classification;
 
-        document.getElementById('fng-value').innerText = value;
-        document.getElementById('fng-text').innerText = status;
+        valueEl.innerText = value;
+        textEl.innerText = status;
         document.getElementById('fng-bar').style.width = `${value}%`;
     } catch (error) {
         console.error('FnG Error:', error);
-        document.getElementById('fng-value').innerText = "Error";
-        document.getElementById('fng-text').innerText = "N/A";
+        valueEl.innerText = "Error";
+        textEl.innerText = "N/A";
     }
 }
 
 // 2. 주식 및 암호화폐 정보 가져오기 (Finnhub API)
 async function fetchStockData(symbol) {
+    if (API_KEY === "YOUR_FINNHUB_API_KEY") {
+        console.error("Finnhub API key is not set. Please replace 'YOUR_FINNHUB_API_KEY' in main.js with your actual key.");
+        return null;
+    }
     try {
         const response = await fetch(`https://finnhub.io/api/v1/quote?symbol=${symbol}&token=${API_KEY}`);
         if (!response.ok) {
@@ -55,9 +65,13 @@ async function fetchStockData(symbol) {
 }
 
 async function updateStock(elementId, symbol) {
-    const data = await fetchStockData(symbol);
     const valueEl = document.getElementById(`${elementId}-value`);
     const changeEl = document.getElementById(`${elementId}-change`);
+    
+    valueEl.innerText = "Loading...";
+    changeEl.innerText = "";
+
+    const data = await fetchStockData(symbol);
 
     if (data && data.c) {
         valueEl.innerText = `$${formatNumber(data.c.toFixed(2))}`;
@@ -82,9 +96,13 @@ async function updateStocks() {
 }
 
 async function updateVix() {
-    const vixData = await fetchStockData('VIXY');
     const vixEl = document.getElementById('vix-value');
     const vixChangeEl = document.getElementById('vix-change');
+    vixEl.innerText = "Loading...";
+    vixChangeEl.innerText = "";
+
+    const vixData = await fetchStockData('VIXY');
+
     if (vixData) {
         vixEl.innerText = `${formatNumber(vixData.c.toFixed(2))}`;
         vixChangeEl.innerText = formatChange(vixData.dp);
@@ -99,13 +117,20 @@ async function updateVix() {
 
 // 5. 시장 뉴스 가져오기 (Finnhub API)
 async function fetchMarketNews() {
+    const newsListEl = document.getElementById('news-list');
+    newsListEl.innerHTML = '<li>Loading news...</li>';
+
+    if (API_KEY === "YOUR_FINNHUB_API_KEY") {
+        newsListEl.innerHTML = '<li style="color: red;">Finnhub API 키가 설정되지 않았습니다.</li>';
+        return;
+    }
+
     try {
         const response = await fetch(`https://finnhub.io/api/v1/news?category=general&token=${API_KEY}`);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
-        const newsListEl = document.getElementById('news-list');
         
         // 상위 5개 뉴스만 표시
         const topNews = data.slice(0, 5);
@@ -134,7 +159,7 @@ async function fetchMarketNews() {
 
     } catch (error) {
         console.error('News Error:', error);
-        document.getElementById('news-list').innerHTML = '<li style="color: red;">뉴스를 불러오는 데 실패했습니다.</li>';
+        newsListEl.innerHTML = '<li style="color: red;">뉴스를 불러오는 데 실패했습니다.</li>';
     }
 }
 
