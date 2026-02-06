@@ -115,28 +115,6 @@ async function updateStocks() {
         vixChangeEl.className = `card-change ${getColorClass(vixData.dp)}`;
     }
 
-    // S&P 500 (SPY)
-    const spyData = await fetchStockData('SPY');
-    if (spyData) {
-        const spyEl = document.getElementById('spy-value');
-        const spyChangeEl = document.getElementById('spy-change');
-        
-        spyEl.innerText = `$${formatNumber(spyData.c.toFixed(2))}`;
-        spyChangeEl.innerText = formatChange(spyData.dp);
-        spyChangeEl.className = `card-change ${getColorClass(spyData.dp)}`;
-    }
-
-    // Nasdaq 100 (QQQ)
-    const qqqData = await fetchStockData('QQQ');
-    if (qqqData) {
-        const qqqEl = document.getElementById('qqq-value');
-        const qqqChangeEl = document.getElementById('qqq-change');
-        
-        qqqEl.innerText = `$${formatNumber(qqqData.c.toFixed(2))}`;
-        qqqChangeEl.innerText = formatChange(qqqData.dp);
-        qqqChangeEl.className = `card-change ${getColorClass(qqqData.dp)}`;
-    }
-
     updateTime();
 }
 
