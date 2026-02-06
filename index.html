@@ -1,14 +1,60 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hello World</title>
-  <link href='/style.css' rel='stylesheet'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investment Dashboard Light</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Hello, world!</h1>
-  <button onclick="console.log('hello');">Press me</button>
-  <script defer type="text/javascript" src="/main.js"></script>
+
+<div class="container">
+    <header>
+        <h1>시장 지표 대시보드</h1>
+        <p style="color: #666; font-size: 0.8rem;">데이터 출처: CoinGecko, Frankfurter, Alternative.me (주식 지수는 예시입니다)</p>
+    </header>
+
+    <div class="dashboard-grid">
+        <div class="card" id="card-fng">
+            <div class="card-title">Crypto Fear & Greed</div>
+            <div class="card-value" id="fng-value">Loading...</div>
+            <div class="card-change" id="fng-text">-</div>
+            <div class="fng-gauge"><div class="fng-fill" id="fng-bar"></div></div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">USD/KRW (환율)</div>
+            <div class="card-value" id="usd-value">Loading...</div>
+            <div class="card-change" id="usd-date">-</div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">Bitcoin (KRW)</div>
+            <div class="card-value" id="btc-value">Loading...</div>
+            <div class="card-change" id="btc-change">0.00%</div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">Ethereum (KRW)</div>
+            <div class="card-value" id="eth-value">Loading...</div>
+            <div class="card-change" id="eth-change">0.00%</div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">KOSPI (예시 데이터)</div>
+            <div class="card-value">2,650.45</div>
+            <div class="card-change text-up">▲ 0.85%</div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">NASDAQ (예시 데이터)</div>
+            <div class="card-value">16,200.10</div>
+            <div class="card-change text-down">▼ 0.42%</div>
+        </div>
+    </div>
+</div>
+
+<script src="main.js"></script>
+
 </body>
 </html>
