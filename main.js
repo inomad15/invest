@@ -170,8 +170,17 @@ function updateTime() {
 }
 
 async function generateAndDisplayBriefing() {
-    const briefingContent = "<h3>☀️ 오늘의 시장 요약</h3><ul><li>시장은 혼조세를 보이며, 기술주는 강세를 보였습니다.</li><li>인플레이션 데이터 발표를 앞두고 투자자들은 신중한 모습을 보이고 있습니다.</li><li>암호화폐 시장은 비트코인의 상승세에 힘입어 전반적으로 강세를 보였습니다.</li></ul><p><b>시장 분석:</b> 시장은 현재 중요한 기로에 서 있습니다. 투자자들은 향후 몇 주 동안 발표될 주요 경제 지표를 주시하고 있으며, 이에 따라 시장의 방향성이 결정될 것으로 보입니다. 특히, 기술주의 상승세가 계속될지 여부가 관심사입니다.</p>";
-    document.getElementById('briefing-content').innerHTML = briefingContent;
+    try {
+        const response = await fetch('briefing.json');
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const briefingData = await response.json();
+        document.getElementById('briefing-content').innerHTML = briefingData.content;
+    } catch (error) {
+        console.error('Briefing Error:', error);
+        document.getElementById('briefing-content').innerHTML = "<p>브리핑을 불러오는 데 실패했습니다.</p>";
+    }
 }
 
 // 초기화 및 실행
