@@ -31,8 +31,8 @@ def generate_briefing(news_list):
 
     genai.configure(api_key=GEMINI_API_KEY)
     
-    # AI 모델 설정 (gemini-pro 사용)
-    model = genai.GenerativeModel('gemini-pro')
+    # AI 모델 설정 (gemini-1.5-flash 사용)
+    model = genai.GenerativeModel('gemini-1.5-flash')
 
     # 프롬프트 구성
     news_text = ""
