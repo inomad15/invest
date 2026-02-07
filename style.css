@@ -103,6 +103,14 @@ h1 {
     font-weight: bold;
     color: var(--text-main);
     text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.navbar-logo {
+    height: 32px;
+    width: auto;
 }
 
 .navbar-menu {
