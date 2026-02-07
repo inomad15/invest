@@ -19,15 +19,16 @@ A modern investment dashboard providing real-time market indicators, crypto fear
 - **Branding:** Integrated `theinvestai_logo.jpg` in the navigation bar for a professional identity.
 - **Navigation:** Consistent header and footer with essential links.
 
-## Current Task: Upgrade to Gemini 3 Model
-Upgrade the briefing generator to use Gemini 3 Flash Preview for cutting-edge analysis and better performance.
+## Current Task: KST Date Synchronization
+Synchronize the morning briefing date and system time displays to always reflect Korea Standard Time (KST).
 
 ### Steps
-1. Update `daily_briefing.py` to use `gemini-3-flash-preview`.
-2. Implement a fallback mechanism to `gemini-1.5-flash-latest` in case of preview model unavailability.
-3. Keep diagnostic logging for model availability tracking.
+1. Update `main.js` to calculate and display the current date in KST for the briefing title.
+2. Update the "Last updated" footer display to show KST.
+3. Ensure the title is dynamically generated in the browser to always remain current.
 
 ## Previous Tasks
+### Upgrade to Gemini 3 Model
 ### Fix Morning Briefing Model
 Address the 404 error in Gemini API by updating the model name and library version.
 

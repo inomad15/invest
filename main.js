@@ -199,8 +199,8 @@ async function fetchMarketNews() {
 
 function updateTime() {
     const now = new Date();
-    const timeString = now.toLocaleTimeString();
-    document.getElementById('last-updated').innerText = `Last updated: ${timeString}`;
+    const timeString = now.toLocaleTimeString('ko-KR', { timeZone: 'Asia/Seoul', hour12: false });
+    document.getElementById('last-updated').innerText = `Last updated (KST): ${timeString}`;
 }
 
 async function generateAndDisplayBriefing() {
@@ -213,19 +213,14 @@ async function generateAndDisplayBriefing() {
         const briefingData = await response.json();
         console.log('Briefing data received:', briefingData);
         
-        // 날짜 처리 (YYYY-MM-DD)
-        let formattedDate = "";
-        try {
-            const dateStr = briefingData.date.split(' ')[0];
-            const dateParts = dateStr.split('-');
-            const year = dateParts[0];
-            const month = parseInt(dateParts[1]);
-            const day = parseInt(dateParts[2]);
-            formattedDate = `${year}년 ${month}월 ${day}일 모닝브리핑`;
-        } catch (e) {
-            console.error('Date parsing error:', e);
-            formattedDate = "오늘의 모닝브리핑";
-        }
+        // 현재 한국 시간(KST) 기준으로 날짜 표시
+        const formattedDate = new Intl.DateTimeFormat('ko-KR', {
+            timeZone: 'Asia/Seoul',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            weekday: 'short'
+        }).format(new Date()) + " 모닝브리핑";
 
         const briefingContentEl = document.getElementById('briefing-content');
         if (briefingContentEl) {
