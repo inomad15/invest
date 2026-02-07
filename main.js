@@ -172,16 +172,50 @@ function updateTime() {
 }
 
 async function generateAndDisplayBriefing() {
+    console.log('Fetching briefing...');
     try {
         const response = await fetch('briefing.json');
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
         const briefingData = await response.json();
-        document.getElementById('briefing-content').innerHTML = briefingData.content;
+        console.log('Briefing data received:', briefingData);
+        
+        // 날짜 처리 (YYYY-MM-DD)
+        let formattedDate = "";
+        try {
+            const dateStr = briefingData.date.split(' ')[0];
+            const dateParts = dateStr.split('-');
+            const year = dateParts[0];
+            const month = parseInt(dateParts[1]);
+            const day = parseInt(dateParts[2]);
+            formattedDate = `${year}년 ${month}월 ${day}일 모닝브리핑`;
+        } catch (e) {
+            console.error('Date parsing error:', e);
+            formattedDate = "오늘의 모닝브리핑";
+        }
+
+        const briefingContentEl = document.getElementById('briefing-content');
+        if (briefingContentEl) {
+            // 내부 HTML을 통째로 교체하여 h3 '로딩 중' 메시지 제거
+            briefingContentEl.innerHTML = `
+                <h2 id="briefing-title" style="font-size: 1.5rem; font-weight: bold; margin-top: 0; margin-bottom: 15px; border-bottom: 2px solid rgba(255,255,255,0.3); padding-bottom: 10px; color: #ffffff !important; display: block !important;">
+                    ${formattedDate}
+                </h2>
+                <div class="briefing-text" style="color: #ffffff !important; line-height: 1.6;">
+                    ${briefingData.content}
+                </div>
+            `;
+            console.log('Briefing HTML injected');
+        } else {
+            console.error('briefing-content element not found');
+        }
     } catch (error) {
-        console.error('Briefing Error:', error);
-        document.getElementById('briefing-content').innerHTML = "<p>브리핑을 불러오는 데 실패했습니다.</p>";
+        console.error('Briefing Fetch Error:', error);
+        const briefingContentEl = document.getElementById('briefing-content');
+        if (briefingContentEl) {
+            briefingContentEl.innerHTML = "<p style='color: white;'>브리핑 데이터를 불러오는 데 실패했습니다.</p>";
+        }
     }
 }
 

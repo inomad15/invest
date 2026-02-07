@@ -15,14 +15,15 @@ A modern investment dashboard providing real-time market indicators, crypto fear
 - **Responsive:** Optimized for both desktop and mobile viewing.
 - **Interactive:** Visual gauges and hover effects for better engagement.
 
-## Current Task: Layout Update
-Move the "Editor's Letter" button to a position above the "Market Indicator Dashboard" header to improve its visibility and prominence.
+## Current Task: Branding Update
+Update the application title and main header to "Market Pulse: AI Briefing & Insights" to create a more professional and modern identity.
 
 ### Steps
-1. Locate the "Editor's Letter" section in `index.html`.
-2. Move the section's HTML code to be above the `<header>` element.
-3. Verify the layout change in the preview.
+1. Update `<title>` tag in `index.html`.
+2. Update `<h1>` header in `index.html`.
+3. Commit and push the changes.
 
 ## Previous Tasks
-### Preview Configuration
+### Layout Update
+Move the "Editor's Letter" button to a position above the "Market Indicator Dashboard" header to improve its visibility and prominence.
 The goal is to update the `.idx/dev.nix` file to enable a preview server using `npm run start` as requested, ensuring the development environment is correctly set up.
