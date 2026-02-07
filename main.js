@@ -90,6 +90,8 @@ async function updateStocks() {
         updateStock('eth', 'BINANCE:ETHUSDT'),
         updateStock('pltr', 'PLTR'),
         updateStock('tsla', 'TSLA'),
+        updateStock('spy', 'SPY'),
+        updateStock('qqq', 'QQQ'),
         updateVix()
     ]);
     updateTime();
