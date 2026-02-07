@@ -19,13 +19,21 @@ A modern investment dashboard providing real-time market indicators, crypto fear
 - **Branding:** Integrated `theinvestai_logo.jpg` in the navigation bar for a professional identity.
 - **Navigation:** Consistent header and footer with essential links.
 
-## Current Task: Dashboard Enhancement
-Add real-time USD/KRW exchange rate information to the dashboard for broader market insights.
+## Current Task: Upgrade to Gemini 3 Model
+Upgrade the briefing generator to use Gemini 3 Flash Preview for cutting-edge analysis and better performance.
 
 ### Steps
-1. Add a new card for USD/KRW in `index.html`.
-2. Update `main.js` to fetch and display the exchange rate using Finnhub API.
-3. Apply appropriate currency formatting (₩).
+1. Update `daily_briefing.py` to use `gemini-3-flash-preview`.
+2. Implement a fallback mechanism to `gemini-1.5-flash-latest` in case of preview model unavailability.
+3. Keep diagnostic logging for model availability tracking.
+
+## Previous Tasks
+### Fix Morning Briefing Model
+Address the 404 error in Gemini API by updating the model name and library version.
+
+## Previous Tasks
+### Dashboard Enhancement
+Add real-time USD/KRW exchange rate information to the dashboard for broader market insights.
 
 ## Previous Tasks
 ### Logo Replacement & Background Matching

@@ -31,8 +31,15 @@ def generate_briefing(news_list):
 
     genai.configure(api_key=GEMINI_API_KEY)
     
-    # AI 모델 설정 (gemini-1.5-flash 사용)
-    model = genai.GenerativeModel('gemini-1.5-flash')
+    # AI 모델 설정 (Gemini 3 Flash Preview 사용, 실패 시 Gemini 1.5로 폴백)
+    model_name = 'gemini-3-flash-preview'
+    try:
+        model = genai.GenerativeModel(model_name)
+        # 테스트를 위해 간단한 호출을 시도해볼 수 있으나, 여기서는 바로 설정합니다.
+    except Exception as e:
+        print(f"Gemini 3 Flash Preview not available, falling back to 1.5: {e}")
+        model_name = 'gemini-1.5-flash-latest'
+        model = genai.GenerativeModel(model_name)
 
     # 프롬프트 구성
     news_text = ""
@@ -43,22 +50,44 @@ def generate_briefing(news_list):
 
     prompt = f"""
     You are a professional financial analyst for Korean investors.
-    Based on the following recent global market news, write a "Morning Briefing" in Korean.
+    Based on the following recent global market news, write a "Morning Briefing" in Korean following the structured format below.
 
     <News Data>
     {news_text}
     </News Data>
 
     <Instructions>
-    1. **Title:** Create a catchy title summarizing the key market sentiment today.
-    2. **Key Takeaways:** Summarize the most important 3-5 points in a bullet list.
-    3. **Market Analysis:** Briefly explain the market atmosphere and what investors should watch out for.
-    4. **Format:** Return the result in **clean HTML format** (without ```html code blocks).
-       - Use `<h3>` for the title.
-       - Use `<ul>` and `<li>` for key takeaways.
-       - Use `<p>` for paragraphs.
-       - Use emojis appropriately to make it engaging.
-       - The tone should be professional yet easy to read.
+    Analyze the provided news and structure the response into these 5 specific sections.
+    **IMPORTANT:** Return the result in **clean HTML format** suitable for a web dashboard (do not use markdown code blocks like ```html).
+
+    **1. 핵심 요약 (Executive Summary)**
+    - **Headline:** Summarize yesterday's US market in one impactful sentence.
+    - **Key Features:** List 3 bullet points (`<li>`) highlighting the most significant market characteristics.
+
+    **2. 주요 지수 및 섹터 동향 (Key Indices & Sector Performance)**
+    - **Key Indices:** Trends and closing points of S&P 500, Nasdaq, Dow, and Russell 2000 (if available in news).
+    - **Sector Flow:** Identify the Top 3 strongest and weakest sectors with brief reasons.
+
+    **3. 시장을 움직인 핵심 동인 (Key Market Drivers)**
+    - **Macro Economy:** Impacts of economic indicators (CPI, Jobs, Fed events).
+    - **Corporate News:** Significant company news (Earnings, M&A, Product launches).
+    - **Other Variables:** Oil prices, Geopolitical risks, etc.
+
+    **4. 특징주 및 시장 심리 (Movers & Sentiment)**
+    - **Top Movers:** List up to 5 notable stocks with reasons for their movement.
+    - **Market Sentiment:** Analyze VIX and 10Y Bond Yield movements to explain Risk-on/off sentiment.
+
+    **5. 오늘의 전망 및 관전 포인트 (Outlook & What to Watch)**
+    - **Schedule:** Upcoming economic data or earnings releases for today.
+    - **Watch Point:** The single most important point investors should focus on today.
+
+    **HTML Formatting Rules:**
+    - Use `<h3>` for the 5 section titles (e.g., `<h3>1. 핵심 요약</h3>`).
+    - Use `<ul>` and `<li>` for lists.
+    - Use `<p>` for descriptive paragraphs.
+    - Use `<strong>` to highlight key terms, numbers, or stock names.
+    - Use relevant emojis to make it professional yet engaging.
+    - Keep the tone professional, analytical, and easy to read for Korean investors.
     </Instructions>
     """
 
@@ -67,6 +96,11 @@ def generate_briefing(news_list):
         return response.text
     except Exception as e:
         print(f"Error generating briefing: {e}")
+        try:
+            available_models = [m.name for m in genai.list_models()]
+            print(f"Available models: {available_models}")
+        except Exception as list_e:
+            print(f"Could not list models: {list_e}")
         return f"<h3>⚠️ 브리핑 생성 실패</h3><p>AI 요약 중 오류가 발생했습니다: {e}</p>"
 
 def save_briefing(content):
