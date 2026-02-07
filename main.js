@@ -92,33 +92,37 @@ async function updateStocks() {
         updateStock('tsla', 'TSLA'),
         updateStock('spy', 'SPY'),
         updateStock('qqq', 'QQQ'),
-        updateForex('usdkrw', 'PEPPERSTONE:10995'),
+        updateForex('usdkrw'),
         updateVix()
     ]);
     updateTime();
 }
 
-async function updateForex(elementId, symbol) {
+async function updateForex(elementId) {
     const valueEl = document.getElementById(`${elementId}-value`);
     const changeEl = document.getElementById(`${elementId}-change`);
     
     valueEl.innerText = "Loading...";
     changeEl.innerText = "";
 
-    const data = await fetchStockData(symbol);
-
-    if (data && data.c) {
-        valueEl.innerText = `₩${formatNumber(data.c.toFixed(2))}`;
-        // Forex data from PEPPERSTONE might not have dp (percent change) in the same way as stocks
-        // Let's check if dp exists, if not, hide or show N/A
-        if (data.dp !== undefined && data.dp !== null) {
-            changeEl.innerText = formatChange(data.dp);
-            changeEl.className = `card-change ${getColorClass(data.dp)}`;
-        } else {
+    try {
+        const response = await fetch('https://open.er-api.com/v6/latest/USD');
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        
+        if (data && data.rates && data.rates.KRW) {
+            const krwRate = data.rates.KRW;
+            valueEl.innerText = `₩${formatNumber(krwRate.toFixed(2))}`;
+            // 이 API는 실시간 변동률을 직접 주지 않으므로 등락률은 비워둡니다.
             changeEl.innerText = "";
             changeEl.className = "card-change";
+        } else {
+            throw new Error("Invalid data format from exchange rate API");
         }
-    } else {
+    } catch (error) {
+        console.error('Forex Error:', error);
         valueEl.innerText = "Error";
         changeEl.innerText = "N/A";
         changeEl.className = "card-change text-flat";
