@@ -92,9 +92,30 @@ async function updateStocks() {
         updateStock('tsla', 'TSLA'),
         updateStock('spy', 'SPY'),
         updateStock('qqq', 'QQQ'),
+        updateForex('usdkrw', 'FX:USDKRW'),
         updateVix()
     ]);
     updateTime();
+}
+
+async function updateForex(elementId, symbol) {
+    const valueEl = document.getElementById(`${elementId}-value`);
+    const changeEl = document.getElementById(`${elementId}-change`);
+    
+    valueEl.innerText = "Loading...";
+    changeEl.innerText = "";
+
+    const data = await fetchStockData(symbol);
+
+    if (data && data.c) {
+        valueEl.innerText = `₩${formatNumber(data.c.toFixed(2))}`;
+        changeEl.innerText = formatChange(data.dp);
+        changeEl.className = `card-change ${getColorClass(data.dp)}`;
+    } else {
+        valueEl.innerText = "Error";
+        changeEl.innerText = "N/A";
+        changeEl.className = "card-change text-flat";
+    }
 }
 
 async function updateVix() {

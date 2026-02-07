@@ -5,7 +5,7 @@ A modern investment dashboard providing real-time market indicators, crypto fear
 
 ## Features
 - **Morning Briefing:** AI-generated summary of market conditions.
-- **Market Indicators:** Real-time tracking of Bitcoin, Ethereum, Palantir, Tesla, S&P 500, and Nasdaq.
+- **Market Indicators:** Real-time tracking of Bitcoin, Ethereum, Palantir, Tesla, S&P 500, Nasdaq, and **USD/KRW Exchange Rate**.
 - **Crypto Fear & Greed Index:** Visual gauge of market sentiment.
 - **Latest Market News:** Curated list of relevant news.
 - **Editor's Letter:** Featured analysis and opinion pieces.
@@ -16,14 +16,23 @@ A modern investment dashboard providing real-time market indicators, crypto fear
 - **Modern UI:** Clean, dark-themed interface with card-based layout.
 - **Responsive:** Optimized for both desktop and mobile viewing.
 - **Interactive:** Visual gauges and hover effects for better engagement.
-- **Branding:** Integrated `market_pulse_logo.png` in the navigation bar for a professional identity.
+- **Branding:** Integrated `theinvestai_logo.jpg` in the navigation bar for a professional identity.
 - **Navigation:** Consistent header and footer with essential links.
 
-## Current Task: Logo Replacement & Background Matching
+## Current Task: Dashboard Enhancement
+Add real-time USD/KRW exchange rate information to the dashboard for broader market insights.
+
+### Steps
+1. Add a new card for USD/KRW in `index.html`.
+2. Update `main.js` to fetch and display the exchange rate using Finnhub API.
+3. Apply appropriate currency formatting (₩).
+
+## Previous Tasks
+### Logo Replacement & Background Matching
 Update the site with the newly uploaded logo and ensure it blends perfectly with the background.
 
 ### Steps
-1. Replace the existing logo with the new `market_pulse_logo.png`.
+1. Replace the existing logo with the new `theinvestai_logo.jpg`.
 2. Adjust CSS to ensure the logo background matches the site's dark theme.
 3. Verify the logo size and positioning.
 
