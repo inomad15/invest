@@ -112,6 +112,7 @@ h1 {
     height: 100px;
     width: auto;
     display: block;
+    object-fit: contain;
 }
 
 .navbar-menu {
