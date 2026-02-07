@@ -40,7 +40,7 @@ Add the Google AdSense script to the `<head>` of all HTML files and create `ads.
 
 ## Previous Tasks
 ### Branding Update
-Update the application title and main header to "Market Pulse: AI Briefing & Insights" to create a more professional and modern identity.
+Update the application title and main header to "The Invest AI: AI Briefing & Insights" to create a more professional and modern identity.
 
 Move the "Editor's Letter" button to a position above the "Market Indicator Dashboard" header to improve its visibility and prominence.
 The goal is to update the `.idx/dev.nix` file to enable a preview server using `npm run start` as requested, ensuring the development environment is correctly set up.
