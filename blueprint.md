@@ -24,7 +24,7 @@ Finalize the visual identity by integrating the logo and ensuring consistent nav
 
 ### Steps
 1. Add `market_pulse_logo.png` to the navigation bar in all HTML files.
-2. Update `style.css` to handle logo styling (height increased to 64px for better visibility).
+2. Update `style.css` to handle logo styling (height increased to 100px for better visibility).
 3. Verify consistency across all pages.
 
 ## Previous Tasks
