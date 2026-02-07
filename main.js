@@ -92,7 +92,7 @@ async function updateStocks() {
         updateStock('tsla', 'TSLA'),
         updateStock('spy', 'SPY'),
         updateStock('qqq', 'QQQ'),
-        updateForex('usdkrw', 'FX:USDKRW'),
+        updateForex('usdkrw', 'PEPPERSTONE:10995'),
         updateVix()
     ]);
     updateTime();
@@ -109,8 +109,15 @@ async function updateForex(elementId, symbol) {
 
     if (data && data.c) {
         valueEl.innerText = `₩${formatNumber(data.c.toFixed(2))}`;
-        changeEl.innerText = formatChange(data.dp);
-        changeEl.className = `card-change ${getColorClass(data.dp)}`;
+        // Forex data from PEPPERSTONE might not have dp (percent change) in the same way as stocks
+        // Let's check if dp exists, if not, hide or show N/A
+        if (data.dp !== undefined && data.dp !== null) {
+            changeEl.innerText = formatChange(data.dp);
+            changeEl.className = `card-change ${getColorClass(data.dp)}`;
+        } else {
+            changeEl.innerText = "";
+            changeEl.className = "card-change";
+        }
     } else {
         valueEl.innerText = "Error";
         changeEl.innerText = "N/A";
