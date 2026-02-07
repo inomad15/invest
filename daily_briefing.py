@@ -103,16 +103,29 @@ def generate_briefing(news_list):
             print(f"Could not list models: {list_e}")
         return f"<h3>⚠️ 브리핑 생성 실패</h3><p>AI 요약 중 오류가 발생했습니다: {e}</p>"
 
+from datetime import datetime, timedelta, timezone
+
+# ... (기존 코드 생략)
+
 def save_briefing(content):
-    """결과를 JSON 파일로 저장합니다."""
+    """결과를 JSON 파일로 저장합니다. 날짜는 한국 시간(KST) 기준입니다."""
+    # UTC 시간을 한국 시간(UTC+9)으로 변환
+    kst_now = datetime.now(timezone.utc) + timedelta(hours=9)
+    
+    # 요일 한글 변환 매핑
+    weekday_map = ['월', '화', '수', '목', '금', '토', '일']
+    weekday_str = weekday_map[kst_now.weekday()]
+    
+    formatted_date = kst_now.strftime(f"%Y-%m-%d ({weekday_str}) %H:%M")
+    
     data = {
-        "date": datetime.now().strftime("%Y-%m-%d %H:%M"),
+        "date": formatted_date,
         "content": content
     }
     
     with open("briefing.json", "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
-    print("briefing.json updated successfully.")
+    print(f"briefing.json updated successfully with date: {formatted_date}")
 
 if __name__ == "__main__":
     print("Starting Daily Briefing Generation...")
