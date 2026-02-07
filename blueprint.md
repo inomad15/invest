@@ -10,13 +10,26 @@ A modern investment dashboard providing real-time market indicators, crypto fear
 - **Latest Market News:** Curated list of relevant news.
 - **Editor's Letter:** Featured analysis and opinion pieces.
 - **Google AdSense:** Integrated for monetization.
+- **Legal Compliance:** Privacy Policy and Terms of Service pages.
 
 ## Design
 - **Modern UI:** Clean, dark-themed interface with card-based layout.
 - **Responsive:** Optimized for both desktop and mobile viewing.
 - **Interactive:** Visual gauges and hover effects for better engagement.
+- **Navigation:** Consistent header and footer with essential links.
 
-## Current Task: Google AdSense Integration
+## Current Task: AdSense Quality Improvement
+Enhance site trustworthiness and structure to meet AdSense quality standards.
+
+### Steps
+1. Create `privacy.html` (Privacy Policy).
+2. Create `terms.html` (Terms of Service).
+3. Create `about.html` (About Us).
+4. Update `style.css` for navigation bar and footer.
+5. Add navigation bar and footer to `index.html` and `editors-letter.html`.
+
+## Previous Tasks
+### Google AdSense Integration
 Add the Google AdSense script to the `<head>` of all HTML files and create `ads.txt` for crawler verification.
 
 ### Steps
@@ -24,6 +37,7 @@ Add the Google AdSense script to the `<head>` of all HTML files and create `ads.
 2. Add the AdSense script to `editors-letter.html`.
 3. Add the AdSense account verification meta tag to all HTML files.
 4. Create `ads.txt` with publisher information.
+
 
 ## Previous Tasks
 ### Branding Update

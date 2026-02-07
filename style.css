@@ -87,3 +87,61 @@ h1 {
     width: 0%;
     transition: width 1s ease-in-out;
 }
+
+/* Navigation Bar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #333;
+}
+
+.navbar-brand {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--text-main);
+    text-decoration: none;
+}
+
+.navbar-menu {
+    display: flex;
+    gap: 20px;
+}
+
+.navbar-menu a {
+    color: var(--text-sub);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+}
+
+.navbar-menu a:hover {
+    color: var(--text-main);
+}
+
+/* Footer */
+.site-footer {
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px solid #333;
+    text-align: center;
+    color: var(--text-sub);
+    font-size: 0.8rem;
+}
+
+.footer-links {
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    color: var(--text-sub);
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.footer-links a:hover {
+    color: var(--text-main);
+    text-decoration: underline;
+}
