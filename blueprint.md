@@ -19,15 +19,16 @@ A modern investment dashboard providing real-time market indicators, crypto fear
 - **Branding:** Integrated `theinvestai_logo.jpg` in the navigation bar for a professional identity.
 - **Navigation:** Consistent header and footer with essential links.
 
-## Current Task: KST Date Synchronization
-Synchronize the morning briefing date and system time displays to always reflect Korea Standard Time (KST).
+## Current Task: AdSense Policy Compliance Remediation
+Resolve "Google-served ads on screens without publisher content" policy violation.
 
 ### Steps
-1. Update `main.js` to calculate and display the current date in KST for the briefing title.
-2. Update the "Last updated" footer display to show KST.
-3. Ensure the title is dynamically generated in the browser to always remain current.
+1. Remove AdSense script tags from `privacy.html`, `terms.html`, and `about.html` to avoid "low value content" flags.
+2. Remove auto-loading AdSense script from `index.html` head.
+3. Implement dynamic AdSense loading in `main.js` to ensure ads only appear after the main briefing content is successfully rendered.
 
 ## Previous Tasks
+### KST Date Synchronization
 ### Upgrade to Gemini 3 Model
 ### Fix Morning Briefing Model
 Address the 404 error in Gemini API by updating the model name and library version.

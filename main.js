@@ -234,6 +234,9 @@ async function generateAndDisplayBriefing() {
                 </div>
             `;
             console.log('Briefing HTML injected');
+            
+            // 콘텐츠 로드 완료 후 AdSense 스크립트 로드 (정책 준수)
+            loadAdSense();
         } else {
             console.error('briefing-content element not found');
         }
@@ -244,6 +247,19 @@ async function generateAndDisplayBriefing() {
             briefingContentEl.innerHTML = "<p style='color: white;'>브리핑 데이터를 불러오는 데 실패했습니다.</p>";
         }
     }
+}
+
+// AdSense 동적 로드 함수
+function loadAdSense() {
+    if (document.getElementById('adsense-script')) return; // 이미 로드됨
+
+    const script = document.createElement('script');
+    script.id = 'adsense-script';
+    script.async = true;
+    script.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6417158187820233";
+    script.crossOrigin = "anonymous";
+    document.head.appendChild(script);
+    console.log("AdSense script loaded dynamically.");
 }
 
 // 초기화 및 실행
