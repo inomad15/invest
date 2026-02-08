@@ -19,15 +19,16 @@ A modern investment dashboard providing real-time market indicators, crypto fear
 - **Branding:** Integrated `theinvestai_logo.jpg` in the navigation bar for a professional identity.
 - **Navigation:** Consistent header and footer with essential links.
 
-## Current Task: 1월 시장 결산 및 투자 전략 보고서
-Create a comprehensive market report for the last week of January 2026 and link it from the dashboard.
+## Current Task: 2월 8일자 주간 투자 보고서 발행
+새로운 주간 보고서(빅테크 CAPEX 전쟁)를 작성하고 대시보드에 연결했습니다.
 
 ### Steps
-1. Create `market-report-2026-02-01.html` with detailed analysis on Non-US markets, commodities, sector performance, and new Fed leadership.
-2. Link the new report from `index.html` prominently below the Editor's Letter.
-3. Maintain design consistency using existing CSS and layout patterns.
+1. `weekly-report-2026-02-08.html` 생성 (오렌지 컬러 포인트 적용).
+2. `index.html` 대시보드의 Editor's Letter와 Monthly Report 사이에 주간 보고서 링크 배치.
+3. 디자인 통일성 유지 및 가독성 최적화.
 
 ## Previous Tasks
+### 1월 시장 결산 및 투자 전략 보고서 (Monthly)
 ### AdSense Policy Compliance Remediation
 ### KST Date Synchronization
 ### Upgrade to Gemini 3 Model
