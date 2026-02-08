@@ -219,7 +219,7 @@ async function generateAndDisplayBriefing() {
             year: 'numeric',
             month: 'long',
             day: 'numeric',
-            weekday: 'short'
+            weekday: 'long'
         }).format(new Date()) + " 모닝브리핑";
 
         const briefingContentEl = document.getElementById('briefing-content');
