@@ -19,15 +19,16 @@ A modern investment dashboard providing real-time market indicators, crypto fear
 - **Branding:** Integrated `theinvestai_logo.jpg` in the navigation bar for a professional identity.
 - **Navigation:** Consistent header and footer with essential links.
 
-## Current Task: AdSense Policy Compliance Remediation
-Resolve "Google-served ads on screens without publisher content" policy violation.
+## Current Task: 1월 시장 결산 및 투자 전략 보고서
+Create a comprehensive market report for the last week of January 2026 and link it from the dashboard.
 
 ### Steps
-1. Remove AdSense script tags from `privacy.html`, `terms.html`, and `about.html` to avoid "low value content" flags.
-2. Remove auto-loading AdSense script from `index.html` head.
-3. Implement dynamic AdSense loading in `main.js` to ensure ads only appear after the main briefing content is successfully rendered.
+1. Create `market-report-2026-02-01.html` with detailed analysis on Non-US markets, commodities, sector performance, and new Fed leadership.
+2. Link the new report from `index.html` prominently below the Editor's Letter.
+3. Maintain design consistency using existing CSS and layout patterns.
 
 ## Previous Tasks
+### AdSense Policy Compliance Remediation
 ### KST Date Synchronization
 ### Upgrade to Gemini 3 Model
 ### Fix Morning Briefing Model
